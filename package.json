@@ -1,0 +1,19 @@
+{
+  "name": "simple-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "rollup -w -c ./build/rollup.config.dev.js",
+    "build": "rollup -c ./build/rollup.config.prod.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "rollup": "^1.12.3",
+    "rollup-plugin-serve": "^1.0.1",
+    "rollup-plugin-typescript2": "^0.21.1",
+    "rollup-plugin-uglify": "^6.0.2",
+    "typescript": "^3.4.5"
+  }
+}

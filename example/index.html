@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Simple React</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="../dist/simple-react.js"></script>
+  <script>
+    let e = React.createElement;
+    class Hello extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          name: 'hello'
+        }
+        this.timer = setInterval(_ => {
+          const flag = Math.floor(Math.random() * 1000) + '';
+          this.setState({
+            name: `hello${flag}`
+          })
+        }, 1000)
+
+        setTimeout(_ => {
+          clearInterval(this.timer)
+        }, 5000)
+      }
+      render(props, {name}) {
+        return e(
+          'h1', null, `${name}`
+        )
+      }
+    }
+
+    class App extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          list: ['aaa', 'bbb', 'ccc']
+        }
+
+        this.timer = setInterval(_ => {
+          this.setState({
+            list: [...this.state.list, Math.floor(Math.random() * 1000) + '']
+          })
+        }, 1000)
+
+        setTimeout(_ => {
+          clearInterval(this.timer)
+        }, 5000)
+      }
+
+      render(props, { list }) {
+        return e(
+          'div', { class: 'app' },
+          e(Hello),
+          e('ul', null, ...list.map(item => e('li', null, item)))
+        )
+      }
+    }
+
+    React.render(e(App), document.querySelector('#root'))
+
+  </script>
+</body>
+
+</html>
